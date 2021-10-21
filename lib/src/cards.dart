@@ -6,7 +6,7 @@ import 'animations.dart';
 import 'controller.dart';
 import 'swipe_info.dart';
 
-typedef ForwardCallback(int index, SwipeInfo info);
+typedef ForwardCallback(int index, SwipeInfo info, dynamic card);
 typedef BackCallback(int index, SwipeInfo info);
 typedef EndCallback();
 
@@ -274,10 +274,8 @@ class TCardState extends State<TCard> with TickerProviderStateMixin {
     _frontCardIndex++;
     _resetFrontCard();
     if (widget.onForward != null && widget.onForward is Function) {
-      widget.onForward!(
-        _frontCardIndex,
-        _swipeInfoList[_frontCardIndex - 1],
-      );
+      widget.onForward!(_frontCardIndex, _swipeInfoList[_frontCardIndex - 1],
+          _cards[_frontCardIndex - 1]);
     }
 
     if (widget.onEnd != null &&
