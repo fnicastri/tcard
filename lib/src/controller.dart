@@ -13,11 +13,9 @@ class TCardController {
 
   int get index => state?.frontCardIndex ?? 0;
 
-  forward({SwipeDirection? direction}) {
-    if (direction == null) {
-      direction =
-          Random().nextBool() ? SwipeDirection.Left : SwipeDirection.Right;
-    }
+  void forward({SwipeDirection? direction}) {
+    direction ??=
+        Random().nextBool() ? SwipeDirection.Left : SwipeDirection.Right;
 
     state!.swipeInfoList.add(SwipeInfo(state!.frontCardIndex, direction));
     state!.runChangeOrderAnimation();

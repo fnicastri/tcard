@@ -35,18 +35,35 @@ class CardAnimations {
     Alignment beginAlignment,
     SwipeInfo info,
   ) {
+    double x, y;
+    switch (info.direction) {
+      case SwipeDirection.Left:
+        x = beginAlignment.x - 30.0;
+        y = 0.0;
+        break;
+      case SwipeDirection.Right:
+        x = beginAlignment.x + 30.0;
+        y = 0.0;
+        break;
+      case SwipeDirection.Up:
+        y = beginAlignment.y - 30.0;
+        x = 0.0;
+        break;
+      case SwipeDirection.None:
+        x = 0.0;
+        y = 0.0;
+        break;
+    }
     return AlignmentTween(
       begin: beginAlignment,
       end: Alignment(
-        info.direction == SwipeDirection.Left
-            ? beginAlignment.x - 30.0
-            : beginAlignment.x + 30.0,
-        0.0,
+        x,
+        y,
       ),
     ).animate(
       CurvedAnimation(
         parent: parent,
-        curve: Interval(0.0, 0.5, curve: Curves.easeIn),
+        curve: const Interval(0.0, 0.5, curve: Curves.easeIn),
       ),
     );
   }
@@ -61,7 +78,7 @@ class CardAnimations {
     ).animate(
       CurvedAnimation(
         parent: parent,
-        curve: Interval(0.2, 0.5, curve: Curves.easeIn),
+        curve: const Interval(0.2, 0.5, curve: Curves.easeIn),
       ),
     );
   }
@@ -77,7 +94,7 @@ class CardAnimations {
     ).animate(
       CurvedAnimation(
         parent: parent,
-        curve: Interval(0.2, 0.5, curve: Curves.easeIn),
+        curve: const Interval(0.2, 0.5, curve: Curves.easeIn),
       ),
     );
   }
@@ -92,7 +109,7 @@ class CardAnimations {
     ).animate(
       CurvedAnimation(
         parent: parent,
-        curve: Interval(0.4, 0.7, curve: Curves.easeIn),
+        curve: const Interval(0.4, 0.7, curve: Curves.easeIn),
       ),
     );
   }
@@ -108,7 +125,7 @@ class CardAnimations {
     ).animate(
       CurvedAnimation(
         parent: parent,
-        curve: Interval(0.4, 0.7, curve: Curves.easeIn),
+        curve: const Interval(0.4, 0.7, curve: Curves.easeIn),
       ),
     );
   }
@@ -133,7 +150,7 @@ class CardReverseAnimations {
     ).animate(
       CurvedAnimation(
         parent: parent,
-        curve: Interval(0.0, 0.5, curve: Curves.easeIn),
+        curve: const Interval(0.0, 0.5, curve: Curves.easeIn),
       ),
     );
   }
@@ -148,7 +165,7 @@ class CardReverseAnimations {
     ).animate(
       CurvedAnimation(
         parent: parent,
-        curve: Interval(0.2, 0.5, curve: Curves.easeIn),
+        curve: const Interval(0.2, 0.5, curve: Curves.easeIn),
       ),
     );
   }
@@ -164,7 +181,7 @@ class CardReverseAnimations {
     ).animate(
       CurvedAnimation(
         parent: parent,
-        curve: Interval(0.2, 0.5, curve: Curves.easeIn),
+        curve: const Interval(0.2, 0.5, curve: Curves.easeIn),
       ),
     );
   }
@@ -179,7 +196,7 @@ class CardReverseAnimations {
     ).animate(
       CurvedAnimation(
         parent: parent,
-        curve: Interval(0.4, 0.7, curve: Curves.easeIn),
+        curve: const Interval(0.4, 0.7, curve: Curves.easeIn),
       ),
     );
   }
@@ -195,7 +212,7 @@ class CardReverseAnimations {
     ).animate(
       CurvedAnimation(
         parent: parent,
-        curve: Interval(0.4, 0.7, curve: Curves.easeIn),
+        curve: const Interval(0.4, 0.7, curve: Curves.easeIn),
       ),
     );
   }
