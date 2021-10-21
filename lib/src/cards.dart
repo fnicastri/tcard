@@ -58,7 +58,14 @@ class TCard extends StatefulWidget {
 
 class TCardState extends State<TCard> with TickerProviderStateMixin {
   //  初始的卡片列表
-  final List<Widget> _cards = [];
+  List<Widget> _cards = [];
+
+  set cards(List<Widget> value) {
+    _cards = value;
+  }
+
+  List<Widget> get cards => _cards;
+
   // Card swipe directions
   final List<SwipeInfo> _swipeInfoList = [];
   List<SwipeInfo> get swipeInfoList => _swipeInfoList;
