@@ -354,7 +354,7 @@ class TCardState extends State<TCard> with TickerProviderStateMixin {
     const double limit = 10.0;
     final bool isSwipeLeft = _frontCardAlignment.x < -limit;
     final bool isSwipeRight = _frontCardAlignment.x > limit;
-    final bool isSwipeUp = _frontCardAlignment.y < -limit;
+    final bool isSwipeUp = _frontCardAlignment.y < -(limit * 0.8);
 
     // 判断是否运行向前的动画，否则回弹
     if (isSwipeLeft || isSwipeRight || isSwipeUp) {

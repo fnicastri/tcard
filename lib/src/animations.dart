@@ -38,15 +38,15 @@ class CardAnimations {
     double x, y;
     switch (info.direction) {
       case SwipeDirection.Left:
-        x = beginAlignment.x - 30.0;
+        x = beginAlignment.x - 40.0;
         y = 0.0;
         break;
       case SwipeDirection.Right:
-        x = beginAlignment.x + 30.0;
+        x = beginAlignment.x + 40.0;
         y = 0.0;
         break;
       case SwipeDirection.Up:
-        y = beginAlignment.y - 30.0;
+        y = beginAlignment.y - 50.0;
         x = 0.0;
         break;
       case SwipeDirection.None:
@@ -139,13 +139,27 @@ class CardReverseAnimations {
     Alignment endAlignment,
     SwipeInfo info,
   ) {
+    double x, y;
+    switch (info.direction) {
+      case SwipeDirection.Left:
+        x = endAlignment.x - 30.0;
+        y = 0.0;
+        break;
+      case SwipeDirection.Right:
+        x = endAlignment.x + 30.0;
+        y = 0.0;
+        break;
+      case SwipeDirection.Up:
+        y = endAlignment.y - 30.0;
+        x = 0.0;
+        break;
+      case SwipeDirection.None:
+        x = 0.0;
+        y = 0.0;
+        break;
+    }
     return AlignmentTween(
-      begin: Alignment(
-        info.direction == SwipeDirection.Left
-            ? endAlignment.x - 30.0
-            : endAlignment.x + 30.0,
-        0.0,
-      ),
+      begin: Alignment(x, y),
       end: endAlignment,
     ).animate(
       CurvedAnimation(
