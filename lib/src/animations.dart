@@ -29,7 +29,7 @@ class CardAlignments {
 
 /// Card Forward Animations
 class CardAnimations {
-  /// 最前面卡片的消失动画
+  /// The first card's disappearance animation
   static Animation<Alignment> frontCardDisappearAnimation(
     AnimationController parent,
     Alignment beginAlignment,
@@ -68,7 +68,7 @@ class CardAnimations {
     );
   }
 
-  /// 中间卡片位置变换动画
+  /// Intermediate card location conversion animation
   static Animation<Alignment> middleCardAlignmentAnimation(
     AnimationController parent,
   ) {
@@ -83,7 +83,7 @@ class CardAnimations {
     );
   }
 
-  /// 中间卡片尺寸变换动画
+  /// Intermediate card size transform animation
   static Animation<Size?> middleCardSizeAnimation(
     AnimationController parent,
     BoxConstraints constraints,
@@ -99,7 +99,7 @@ class CardAnimations {
     );
   }
 
-  /// 最后面卡片位置变换动画
+  /// Last face card position conversion animation
   static Animation<Alignment> backCardAlignmentAnimation(
     AnimationController parent,
   ) {
@@ -114,7 +114,7 @@ class CardAnimations {
     );
   }
 
-  /// 最后面卡片尺寸变换动画
+  /// Last face card size transform animation
   static Animation<Size?> backCardSizeAnimation(
     AnimationController parent,
     BoxConstraints constraints,
@@ -133,7 +133,7 @@ class CardAnimations {
 
 /// Card Backward Animations
 class CardReverseAnimations {
-  /// 最前面卡片的出现动画
+  /// Adventive animation of the front card
   static Animation<Alignment> frontCardShowAnimation(
     AnimationController parent,
     Alignment endAlignment,
@@ -169,7 +169,7 @@ class CardReverseAnimations {
     );
   }
 
-  /// 中间卡片位置变换动画
+  /// Intermediate card location conversion animation
   static Animation<Alignment> middleCardAlignmentAnimation(
     AnimationController parent,
   ) {
@@ -184,7 +184,7 @@ class CardReverseAnimations {
     );
   }
 
-  /// 中间卡片尺寸变换动画
+  /// Intermediate card size transform animation
   static Animation<Size?> middleCardSizeAnimation(
     AnimationController parent,
     BoxConstraints constraints,
@@ -200,7 +200,7 @@ class CardReverseAnimations {
     );
   }
 
-  /// 最后面卡片位置变换动画
+  /// Last face card position conversion animation
   static Animation<Alignment> backCardAlignmentAnimation(
     AnimationController parent,
   ) {
@@ -215,7 +215,7 @@ class CardReverseAnimations {
     );
   }
 
-  /// 最后面卡片尺寸变换动画
+  /// Last face card size transform animation
   static Animation<Size?> backCardSizeAnimation(
     AnimationController parent,
     BoxConstraints constraints,
