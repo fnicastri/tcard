@@ -1,9 +1,8 @@
 import 'dart:math';
 
 import 'package:flutter/widgets.dart';
-
-import 'cards.dart';
-import 'swipe_info.dart';
+import 'package:tcard/src/cards.dart';
+import 'package:tcard/src/swipe_info.dart';
 
 /// Card controller
 class TCardController {

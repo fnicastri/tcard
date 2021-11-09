@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import 'swipe_info.dart';
+import 'package:tcard/src/swipe_info.dart';
 
 /// Card Sizes
 class CardSizes {

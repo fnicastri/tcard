@@ -1,14 +1,14 @@
 import 'dart:math' as math;
+
 import 'package:flutter/material.dart';
 import 'package:flutter/physics.dart';
+import 'package:tcard/src/animations.dart';
+import 'package:tcard/src/controller.dart';
+import 'package:tcard/src/swipe_info.dart';
 
-import 'animations.dart';
-import 'controller.dart';
-import 'swipe_info.dart';
-
-typedef ForwardCallback(int index, SwipeInfo info, dynamic card);
-typedef BackCallback(int index, SwipeInfo info);
-typedef EndCallback();
+typedef ForwardCallback = Function(int index, SwipeInfo info, dynamic card);
+typedef BackCallback = Function(int index, SwipeInfo info);
+typedef EndCallback = Function();
 
 /// Card list
 class TCard extends StatefulWidget {
@@ -40,6 +40,7 @@ class TCard extends StatefulWidget {
   final int delaySlideFor;
 
   const TCard({
+    Key? key,
     required this.cards,
     this.controller,
     this.onForward,
@@ -49,8 +50,8 @@ class TCard extends StatefulWidget {
     this.slideSpeed = 20,
     this.delaySlideFor = 500,
     this.size = const Size(380, 400),
-  })  : assert(cards != null),
-        assert(cards.length > 0);
+  })  : assert(cards.length > 0),
+        super(key: key);
 
   @override
   TCardState createState() => TCardState();
@@ -461,7 +462,7 @@ class TCardState extends State<TCard> with TickerProviderStateMixin {
                         },
                       ),
                     )
-                  : IgnorePointer(),
+                  : const IgnorePointer(),
             ],
           );
         },
