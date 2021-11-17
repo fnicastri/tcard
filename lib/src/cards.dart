@@ -1,3 +1,5 @@
+// ignore_for_file: unnecessary_getters_setters
+
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
@@ -39,6 +41,15 @@ class TCard extends StatefulWidget {
   /// How long does it have to wait until the next slide is sliable? less is quicker. 100 is fast enough. 500 is a bit slow.
   final int delaySlideFor;
 
+  /// Overlay to show during slide right
+  final Widget? slideRightOverlay;
+
+  /// Overlay to show during slide left
+  final Widget? slideLeftOverlay;
+
+  /// Overlay to show during slide up
+  final Widget? slideUpOverlay;
+
   const TCard({
     Key? key,
     required this.cards,
@@ -50,6 +61,9 @@ class TCard extends StatefulWidget {
     this.slideSpeed = 20,
     this.delaySlideFor = 500,
     this.size = const Size(380, 400),
+    this.slideRightOverlay,
+    this.slideLeftOverlay,
+    this.slideUpOverlay,
   })  : assert(cards.length > 0),
         super(key: key);
 
@@ -93,12 +107,17 @@ class TCardState extends State<TCard> with TickerProviderStateMixin {
         _frontCardIndex < _cards.length ? _cards[_frontCardIndex] : Container();
     bool forward = _cardChangeController.status == AnimationStatus.forward;
     bool reverse = _cardReverseController.status == AnimationStatus.forward;
-
+    SwipeDirection? a = _judgeShowOverlay();
     Widget rotate = Transform.rotate(
       angle: (math.pi / 180.0) * _frontCardRotation,
       child: SizedBox.fromSize(
         size: CardSizes.front(constraints),
-        child: child,
+        child: Stack(alignment: AlignmentDirectional.center, children: [
+          child,
+          if (a == SwipeDirection.Right) widget.slideRightOverlay!,
+          if (a == SwipeDirection.Left) widget.slideLeftOverlay!,
+          if (a == SwipeDirection.Up) widget.slideUpOverlay!,
+        ]),
       ),
     );
 
@@ -258,7 +277,7 @@ class TCardState extends State<TCard> with TickerProviderStateMixin {
     _cardChangeController.forward();
   }
 
-  get runChangeOrderAnimation => _runChangeOrderAnimation;
+  void Function() get runChangeOrderAnimation => _runChangeOrderAnimation;
 
   // Run card back animation
   void _runReverseOrderAnimation() {
@@ -275,7 +294,7 @@ class TCardState extends State<TCard> with TickerProviderStateMixin {
     _cardReverseController.forward();
   }
 
-  get runReverseOrderAnimation => _runReverseOrderAnimation;
+  void Function() get runReverseOrderAnimation => _runReverseOrderAnimation;
 
   // Execute after the forward animation is completed
   void _forwardCallback() {
@@ -347,6 +366,27 @@ class TCardState extends State<TCard> with TickerProviderStateMixin {
     // Set the rotation angle of the front card
     _frontCardRotation = _frontCardAlignment.x;
     setState(() {});
+  }
+
+  // judge whenever show an overlay
+  SwipeDirection? _judgeShowOverlay() {
+    // Card horizontal distance limit
+    const double limit = 10;
+    final bool isSwipeLeft = _frontCardAlignment.x < -limit;
+    final bool isSwipeRight = _frontCardAlignment.x > limit;
+    final bool isSwipeUp = _frontCardAlignment.y < -(limit * 0.8);
+
+    // Judging whether it runs forward animation, otherwise rebound
+    if (isSwipeLeft || isSwipeRight || isSwipeUp) {
+      if (isSwipeLeft) {
+        return SwipeDirection.Left;
+      } else if (isSwipeRight) {
+        return SwipeDirection.Right;
+      } else if (isSwipeUp) {
+        return SwipeDirection.Up;
+      }
+    }
+    return null;
   }
 
   // Judging whether there is an animation
