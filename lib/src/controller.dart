@@ -22,6 +22,7 @@ class TCardController {
     state!.runChangeOrderAnimation();
   }
 
+  // ignore: always_declare_return_types
   back() {
     state!.runReverseOrderAnimation();
   }
@@ -49,8 +50,9 @@ class TCardController {
       final stateCards = state!.cards;
       int startIndex = state!.frontCardIndex;
       int endIndex = startIndex + frontItemsToRetain;
+      // NOTE: was endIndex <= stateCards.length
       endIndex =
-          endIndex <= stateCards.length ? endIndex : stateCards.length - 1;
+          endIndex < stateCards.length ? endIndex : stateCards.length - 1;
       frontDeck = state!.cards.getRange(0, endIndex).toList();
     }
     List<Widget> newDeck = List.from(frontDeck);
@@ -66,7 +68,7 @@ class TCardController {
     }
   }
 
-  get reset => state!.reset;
+  void Function({List<Widget>? cards}) get reset => state!.reset;
 
   void dispose() {
     state = null;

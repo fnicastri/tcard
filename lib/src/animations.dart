@@ -5,7 +5,7 @@ import 'package:tcard/src/swipe_info.dart';
 class CardSizes {
   static Size front(BoxConstraints constraints) {
     return Size(constraints.maxWidth * 0.95, constraints.maxHeight * 0.95);
-    return Size(constraints.maxWidth * 0.9, constraints.maxHeight * 0.9);
+    // return Size(constraints.maxWidth * 0.9, constraints.maxHeight * 0.9);
   }
 
   static Size middle(BoxConstraints constraints) {

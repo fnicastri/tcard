@@ -117,7 +117,7 @@ class TCardState extends State<TCard> with TickerProviderStateMixin {
           if (a == SwipeDirection.Right) widget.slideRightOverlay!,
           if (a == SwipeDirection.Left) widget.slideLeftOverlay!,
           if (a == SwipeDirection.Up) widget.slideUpOverlay!,
-        ]),
+        ],),
       ),
     );
 
@@ -302,7 +302,7 @@ class TCardState extends State<TCard> with TickerProviderStateMixin {
     _resetFrontCard();
     if (widget.onForward != null && widget.onForward is Function) {
       widget.onForward!(_frontCardIndex, _swipeInfoList[_frontCardIndex - 1],
-          _cards[_frontCardIndex - 1]);
+          _cards[_frontCardIndex - 1],);
     }
 
     if (widget.onEnd != null &&
